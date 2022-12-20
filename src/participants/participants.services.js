@@ -13,8 +13,8 @@ const getAllParticipants = (req, res) => {
 
 const getParticipantsById = (req, res) => {
 
-    const id = req.params.conversation_id
-    participantsController.findConversationById(id)
+    const id = req.params.participants_id
+    participantsController.findParticipantsById(id)
         .then(data => {
             if(data){
                 res.status(200).json(data)
@@ -30,7 +30,7 @@ const getParticipantsById = (req, res) => {
 const postParticipants = (req ,res) => {
     const {title, imageUrl, participantId} = req.body
     const ownerId = req.user.id 
-    participantsController.createparticipants({title, imageUrl, participantId, ownerId})
+    participantsController.createParticipants({title, imageUrl, participantId, ownerId})
         .then(data => {
             res.status(201).json(data)
         })
@@ -46,7 +46,7 @@ const postParticipants = (req ,res) => {
 const patchParticipants = (req, res) => {
     const id = req.params.participants_id
     const { title, imageUrl } = req.body
-    participantsController.updateparticipants(id, {title, imageUrl})
+    participantsController.updateParticipants(id, {title, imageUrl})
         .then(data => {
             if(data){
                 res.status(200).json({message: `participants with id: ${id} updated succesfully!`})
