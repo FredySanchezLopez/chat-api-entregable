@@ -1,8 +1,8 @@
 const participantsController = require('./participants.controller')
 
 
-const getAllparticipants = (req, res) => {
-    participantsController.findAllparticipants()
+const getAllParticipants = (req, res) => {
+    participantsController.findAllParticipants()
         .then((data) => {
             res.status(200).json(data)
         })
@@ -11,7 +11,7 @@ const getAllparticipants = (req, res) => {
         })
 }
 
-const getparticipantsById = (req, res) => {
+const getParticipantsById = (req, res) => {
 
     const id = req.params.conversation_id
     participantsController.findConversationById(id)
@@ -27,7 +27,7 @@ const getparticipantsById = (req, res) => {
         })
 }
 
-const postparticipants = (req ,res) => {
+const postParticipants = (req ,res) => {
     const {title, imageUrl, participantId} = req.body
     const ownerId = req.user.id 
     participantsController.createparticipants({title, imageUrl, participantId, ownerId})
@@ -43,7 +43,7 @@ const postparticipants = (req ,res) => {
         })
 }
 
-const patchparticipants = (req, res) => {
+const patchParticipants = (req, res) => {
     const id = req.params.participants_id
     const { title, imageUrl } = req.body
     participantsController.updateparticipants(id, {title, imageUrl})
@@ -59,7 +59,7 @@ const patchparticipants = (req, res) => {
         })
 }
 
-const deleteparticipants = (req, res) => {
+const deleteParticipants = (req, res) => {
     const id = req.params.participants_id
     participantsController.removeparticipants(id)
         .then(data => {
@@ -75,9 +75,9 @@ const deleteparticipants = (req, res) => {
 }
 
 module.exports = {
-    getAllparticipants,
-    postparticipants,
-    getparticipantsById,
-    patchparticipants,
-    deleteparticipants
+    getAllParticipants,
+    postParticipants,
+    getParticipantsById,
+    patchParticipants,
+    deleteParticipants
 }
